@@ -1,24 +1,22 @@
+import sys
+sys.stdin = open("input.txt", "r")
+
 T = 10
 
 for tc in range(1, 11):
     N = int(input())
     arr = list(map(int, input().split()))
 
+    for i in range(N):
+        arr.sort()      #sort를 for문 안에서 하는 이유: 덤프를 수행할 때마다 최고점과 최저점을 갱신해야 하기 때문임
 
-max_high = arr[0]
-min_high = arr[0]
-max_cnt = 0
-min_cnt = 0
+        if arr[-1] - arr[0] <= 1:   #덤프를 수행하기 전에 평탄화의 여부를 확인해야함
+            break
 
-for i in arr:  # 상자 높이의 최댓값, 최솟값 구하기
-    if max_high <= i:
-        max_high = i
-    if min_high >= i:
-        min_high = i
-    # print(max_high, min_high)
+        arr[0] += 1     #덤프 수행
+        arr[-1] -= 1
 
-for k in range(N):
-    min_high += 1
-print(max_high, min_high)
+        max_high = max(arr)
+        min_high = min(arr)
 
-# print(f'#{tc} {max_high - min_high}')
+    print(f'#{tc} {max_high - min_high}')
