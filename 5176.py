@@ -1,28 +1,16 @@
 T = int(input())
 
-def in_order(tree):
+def in_order(i):        # 중위 순회 함수
+    global num
+    if i <= N:
+        in_order(i * 2)     # 왼쪽 자식
+        Tree[i] = num      # value에 숫자 넣고
+        num += 1            # 숫자 1씩 늘려줌
+        in_order(i * 2 + 1)     # 오른쪽 자식
 
-
-for tc in range(1, T+1):
+for tc in range(1, T + 1):
     N = int(input())
-
-    left = [0] * (N+1)
-    right = [0] * (N+1)
-    parent = [0] * (N+1)
-
-    for i in range(N-1):
-        p, c =
-
-
-
-
-
-
-
-
-
-    # def in_order(Tree):
-    #     if Tree:  # 0이 아니면 (존재하는 정점이면)
-    #         in_order(left[Tree])  # 왼쪽 자식(서브트리)로 이동
-    #         print(Tree)  # visit(T) T에서 할일 처리
-    #         in_order(right[Tree])  # 오른쪽 자식(서브트리)로 이동
+    Tree = [0] * (N + 1)   # 1번부터 N번까지 쓰니까 N+1
+    num = 1                 # 1부터 N까지 채울 숫자
+    in_order(1)             # 1번이 루트니까 1부터 시작
+    print(f"#{tc} {Tree[1]} {Tree[N//2]}")

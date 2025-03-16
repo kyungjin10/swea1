@@ -1,3 +1,5 @@
+import sys
+sys.stdin = open("input.txt", "r")
 
 def pre_order(T):
     if T:
